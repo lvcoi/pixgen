@@ -3,6 +3,7 @@ package exporter
 import (
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	"pixgen/internal/packer"
 	"pixgen/internal/render"
@@ -34,12 +35,17 @@ func Export(doc schema.Document, outDir string) error {
 		return err
 	}
 
+	spritesDir := filepath.Clean(filepath.Join(outDir, "sprites"))
 	for _, s := range doc.Sprites {
 		img, err := render.RenderSprite(s, doc.Palette, doc.Sheet.SpriteWidth, doc.Sheet.SpriteHeight)
 		if err != nil {
 			return err
 		}
-		if err := render.SavePNG(filepath.Join(outDir, "sprites", s.ID+".png"), img); err != nil {
+		spritePath := filepath.Clean(filepath.Join(spritesDir, s.ID+".png"))
+		if !strings.HasPrefix(spritePath+string(filepath.Separator), spritesDir+string(filepath.Separator)) {
+			return fmt.Errorf("sprite id %q resolves to unsafe path", s.ID)
+		}
+		if err := render.SavePNG(spritePath, img); err != nil {
 			return err
 		}
 	}
