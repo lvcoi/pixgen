@@ -25,7 +25,7 @@ The repository currently includes a strong mission brief in `AGENT.md`, but lack
 2. **No test harness or fixtures**
    - No validation samples, golden outputs, or CI checks.
 3. **No contributor execution path**
-   - `README.md` does not yet explain setup, commands, or milestone plan.
+   - `README.md` does not yet explain local setup, core commands, or concrete usage examples for contributors.
 
 ## Recommended Follow-ups (Prioritized)
 
