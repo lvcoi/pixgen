@@ -88,7 +88,11 @@ func mustLoad(path string) schema.Document {
 }
 
 func printJSON(v any) {
-	b, _ := json.MarshalIndent(v, "", "  ")
+	b, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "marshal json:", err)
+		os.Exit(1)
+	}
 	fmt.Println(string(b))
 }
 
