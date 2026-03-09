@@ -1,5 +1,8 @@
 # PR Review
 
+> **Snapshot assessment of PR #2** (commit `e96d863`) — this is not a reusable template.
+> It records a one-time review of the files present at that commit.
+
 ## Scope Reviewed
 
 - `AGENT.md`
@@ -7,7 +10,7 @@
 
 ## Summary
 
-The repository currently includes a strong mission brief in `AGENT.md`, but lacks executable scaffold artifacts. For a PR claiming project bootstrap, this is **partially complete**: product intent is clear, implementation baseline is not yet present.
+PR #2 (commit `e96d863`) introduces the repository's initial `AGENT.md` and `README.md`. The repository currently includes a strong mission brief in `AGENT.md`, but lacks executable scaffold artifacts. This bootstrap PR is **partially complete**: product intent is clear, implementation baseline is not yet present.
 
 ## What Looks Good
 
