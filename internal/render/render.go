@@ -16,7 +16,7 @@ import (
 func RenderSprite(sprite schema.Sprite, palette map[string]string, cellW, cellH int) (*image.RGBA, error) {
 	img := image.NewRGBA(image.Rect(0, 0, cellW, cellH))
 	for y, row := range sprite.Pixels {
-		for x, c := range row {
+		for x, c := range []rune(row) {
 			rgba, err := parseRGBA(palette[string(c)])
 			if err != nil {
 				return nil, fmt.Errorf("sprite %s parse color %q: %w", sprite.ID, string(c), err)
