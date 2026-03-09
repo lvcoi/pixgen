@@ -18,7 +18,11 @@ func RenderSprite(sprite schema.Sprite, palette map[string]string, cellW, cellH 
 	for y, row := range sprite.Pixels {
 		x := 0
 		for _, c := range row {
-			rgba, err := parseRGBA(palette[string(c)])
+			hex, ok := palette[string(c)]
+			if !ok {
+				return nil, fmt.Errorf("sprite %s undefined palette key %q", sprite.ID, string(c))
+			}
+			rgba, err := parseRGBA(hex)
 			if err != nil {
 				return nil, fmt.Errorf("sprite %s parse color %q: %w", sprite.ID, string(c), err)
 			}
