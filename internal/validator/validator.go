@@ -102,8 +102,12 @@ func allTransparent(s schema.Sprite, key string) bool {
 }
 
 // isValidColor returns true if hex is a valid #RRGGBB or #RRGGBBAA color string.
+// The leading '#' is required.
 func isValidColor(hex string) bool {
-	h := strings.TrimPrefix(hex, "#")
+	if !strings.HasPrefix(hex, "#") {
+		return false
+	}
+	h := hex[1:]
 	if len(h) != 6 && len(h) != 8 {
 		return false
 	}
