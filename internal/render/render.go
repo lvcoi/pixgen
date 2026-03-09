@@ -51,7 +51,7 @@ func parseRGBA(hex string) (color.RGBA, error) {
 		h += "ff"
 	}
 	if len(h) != 8 {
-		return color.RGBA{}, fmt.Errorf("invalid color %q: expected #RRGGBB or #RRGGBBAA", orig)
+		return color.RGBA{}, fmt.Errorf("invalid color %q: expected RRGGBB or RRGGBBAA (with optional leading #)", orig)
 	}
 	n, err := strconv.ParseUint(h, 16, 32)
 	if err != nil {
