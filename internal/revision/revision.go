@@ -20,6 +20,9 @@ func Review(doc schema.Document) Report {
 		transparentKey = "."
 	}
 	for _, s := range doc.Sprites {
+		if s.ID == "" {
+			continue
+		}
 		if weakSprite(s, transparentKey) {
 			r.NeedsRevision = append(r.NeedsRevision, s.ID)
 			r.Reasons[s.ID] = "sprite has <=1 opaque pixel row; likely incomplete"
