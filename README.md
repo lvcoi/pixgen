@@ -4,7 +4,7 @@
 
 ## Current status
 
-This repository currently contains the product mission and implementation direction in `AGENT.md`, plus a PR review checklist in `PR_REVIEW.md`.
+This repository currently contains the product mission and implementation direction in `AGENT.md`, plus PR review guidance in `PR_REVIEW.md`.
 
 ## Next implementation milestone
 
