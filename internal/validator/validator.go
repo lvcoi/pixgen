@@ -34,6 +34,9 @@ func Validate(doc schema.Document) Result {
 		r.Errors = append(r.Errors, "palette must define at least one color")
 	}
 	for key, val := range doc.Palette {
+		if len([]rune(key)) != 1 {
+			r.Errors = append(r.Errors, fmt.Sprintf("palette key %q must be exactly one character", key))
+		}
 		if !isValidColor(val) {
 			r.Errors = append(r.Errors, fmt.Sprintf("palette key %q has invalid color value %q; expected #RRGGBB or #RRGGBBAA", key, val))
 		}
@@ -53,10 +56,12 @@ func Validate(doc schema.Document) Result {
 		} else if !safeIDPattern.MatchString(s.ID) {
 			r.Errors = append(r.Errors, fmt.Sprintf("sprite %q id contains invalid characters; only [A-Za-z0-9_-] are allowed", s.ID))
 		}
-		if _, ok := ids[s.ID]; ok {
-			r.Errors = append(r.Errors, fmt.Sprintf("duplicate sprite id %q", s.ID))
+		if s.ID != "" {
+			if _, ok := ids[s.ID]; ok {
+				r.Errors = append(r.Errors, fmt.Sprintf("duplicate sprite id %q", s.ID))
+			}
+			ids[s.ID] = struct{}{}
 		}
-		ids[s.ID] = struct{}{}
 
 		if s.X < 0 || s.X >= doc.Sheet.Columns || s.Y < 0 || s.Y >= doc.Sheet.Rows {
 			r.Errors = append(r.Errors, fmt.Sprintf("sprite %q coordinates (%d,%d) out of sheet bounds", s.ID, s.X, s.Y))
