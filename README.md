@@ -1,15 +1,53 @@
 # pixgen
 
-`pixgen` is a local-first sprite-sheet generation pipeline focused on iterative AI-assisted creation.
+`pixgen` is a local-first sprite sheet generation scaffold for iterative AI-assisted workflows.
 
-## Current status
+## What is included
 
-This repository currently contains the product mission and implementation direction in `AGENT.md`, plus PR review guidance in `PR_REVIEW.md`.
+- Canonical JSON schema for sheet metadata, indexed palette, and sprite pixel grids.
+- Validator that checks dimensions, palette usage, IDs, and bounds.
+- Renderer + sheet packer using Go's image packages.
+- Export pipeline that emits:
+  - `spritesheet.png`
+  - `sheet.json`
+  - `sprites/*.png`
+  - `metadata.json`
+  - `review.json` (revision loop contract)
+- Minimal CLI (`validate`, `export`, `run`).
+- Sample fixture and tests.
 
-## Next implementation milestone
+## Authoring format
 
-1. Create a Go module and CLI scaffold.
-2. Define canonical sprite authoring schema.
-3. Implement validator + sample fixtures.
-4. Implement preview renderer and sheet export.
-5. Add tests and usage documentation.
+See `fixtures/sample_sheet.json` for a complete example.
+
+## Quickstart
+
+```bash
+go test ./...
+go run ./cmd/pixgen validate -in fixtures/sample_sheet.json
+go run ./cmd/pixgen export -in fixtures/sample_sheet.json -out out
+```
+
+## CLI
+
+### Validate only
+
+```bash
+go run ./cmd/pixgen validate -in fixtures/sample_sheet.json
+```
+
+### Export artifacts
+
+```bash
+go run ./cmd/pixgen export -in fixtures/sample_sheet.json -out out
+```
+
+### Run full pipeline
+
+```bash
+go run ./cmd/pixgen run -in fixtures/sample_sheet.json -out out
+```
+
+## Preview
+
+Open `out/spritesheet.png` in any image viewer. A lightweight static preview shell is included at `preview/index.html`.

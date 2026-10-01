@@ -1,0 +1,48 @@
+{
+  "sheet": {
+    "name": "wasteland_npcs",
+    "sprite_width": 8,
+    "sprite_height": 8,
+    "columns": 2,
+    "rows": 1
+  },
+  "palette": {
+    ".": "#00000000",
+    "A": "#1b1b1b",
+    "B": "#d7b98e"
+  },
+  "sprites": [
+    {
+      "id": "npc_idle",
+      "x": 0,
+      "y": 0,
+      "tags": ["npc", "idle"],
+      "pixels": [
+        "........",
+        "...AA...",
+        "..ABBA..",
+        "..ABBA..",
+        "...AA...",
+        "..A..A..",
+        "..A..A..",
+        "........"
+      ]
+    },
+    {
+      "id": "npc_walk",
+      "x": 1,
+      "y": 0,
+      "tags": ["npc", "walk"],
+      "pixels": [
+        "........",
+        "...AA...",
+        "..ABBA..",
+        "..ABBA..",
+        "...AA...",
+        "...AA...",
+        "..A..A..",
+        "........"
+      ]
+    }
+  ]
+}
